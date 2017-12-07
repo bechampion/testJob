@@ -18,10 +18,11 @@ pipeline{
       echo 'terraform plan'
       input 'Terraform Apply??'
       //wrap([$class: 'VaultBuildWrapper', configuration:  [$class: 'VaultConfiguration',vaultUrl: 'http://127.0.0.1:8200', vaultCredentialId:'vault-token'], vaultSecrets :  [
-      wrap([$class: 'VaultBuildWrapper', configuration: vaultConfiguration(), vaultSecrets :  [
-   [$class: 'VaultSecret', path: 'secret/hello', secretValues: [
-   [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value'],
-   ]]]]) { 
+      wrap([$class: 'VaultBuildWrapper', configuration: vaultConfiguration(), vaultSecrets :  VaultSecrets()]){
+   //[[$class: 'VaultSecret', path: 'secret/hello', secretValues: [
+   //[$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value'],
+   //]]]
+   // ]) { 
       echo "${env.testing}"
       echo "${env.PATH}"
       }
@@ -31,5 +32,8 @@ pipeline{
 }
 def vaultConfiguration() {
     return [$class: 'VaultConfiguration',vaultUrl: 'http://127.0.0.1:8200', vaultCredentialId:'vault-token']
+}
+def vaultSecrets() { 
+   return [[$class: 'VaultSecret', path: 'secret/hello', secretValues: [[$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value'],]]]
 }
 
