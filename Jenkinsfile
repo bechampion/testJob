@@ -21,7 +21,8 @@ pipeline{
    [$class: 'VaultSecret', path: 'secret/hello', secretValues: [
    [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value'],
    ]]]]) { 
-      echo 'export'
+      echo "${env.testing}"
+      echo "${env.PATH}"
       }
     }
    }
