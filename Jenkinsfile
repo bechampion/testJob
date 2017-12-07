@@ -17,7 +17,7 @@ pipeline{
     steps {
       echo 'terraform plan'
       input 'Terraform Apply??'
-      wrap([$class: 'VaultBuildWrapper', configuration:  [$class: 'VaultConfiguration',vaultUrl: 'http://127.0.0.1:8200', vaultCredentialId:'21db8baf-b74b-4634-7420-ba5fd71dfe4e'], vaultSecrets :  [
+      wrap([$class: 'VaultBuildWrapper', configuration:  [$class: 'VaultConfiguration',vaultUrl: 'http://127.0.0.1:8200', vaultCredentialId:'valult-token'], vaultSecrets :  [
    [$class: 'VaultSecret', path: 'secret/hello', secretValues: [
    [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value'],
    ]]]]) { 
