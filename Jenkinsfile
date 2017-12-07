@@ -18,10 +18,10 @@ pipeline{
     steps {
       echo 'terraform plan'
       input 'Terraform Apply??'
-   configuration = [$class: 'VaultConfiguration',
+   def configuration = [$class: 'VaultConfiguration',
        vaultUrl: 'http://my-very-other-vault-url.com',
        vaultCredentialId: 'my-vault-cred-id']
-   secrets = [
+   def secrets = [
    [$class: 'VaultSecret', path: 'secret/testing', secretValues: [
    [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value_one'],
    ]]]
