@@ -5,7 +5,7 @@ pipeline{
    secrets = [
    [$class: 'VaultSecret', path: 'secret/testing', secretValues: [
    [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value_one'],
-   ]
+   ]]
    configuration = [$class: 'VaultConfiguration',
        vaultUrl: 'http://my-very-other-vault-url.com',
        vaultCredentialId: 'my-vault-cred-id']
