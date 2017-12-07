@@ -26,6 +26,8 @@ pipeline{
       echo 'terraform plan'
       input 'Terraform Apply??'
       wrap([$class: 'VaultBuildWrapper', configuration: configuration, vaultSecrets: secrets]) {
+      echo '1'
+      }
     }
    }
   }
