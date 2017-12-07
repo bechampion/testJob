@@ -28,7 +28,7 @@ pipeline{
    }
   }
 }
-def pepe() {
-    return 1
+def vaultConfiguration() {
+    return [$class: 'VaultConfiguration',vaultUrl: 'http://127.0.0.1:8200', vaultCredentialId:'vault-token']
 }
 
