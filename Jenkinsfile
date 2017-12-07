@@ -17,7 +17,7 @@ pipeline{
     steps {
       echo 'terraform plan'
       input 'Terraform Apply??'
-      wrap([$class: 'VaultBuildWrapper', configuration: , [$class: 'VaultConfiguration',
+      wrap([$class: 'VaultBuildWrapper', configuration: [$class: 'VaultConfiguration',
        vaultUrl: 'http://my-very-other-vault-url.com',
        vaultCredentialId: 'my-vault-cred-id'], vaultSecrets :  [
    [$class: 'VaultSecret', path: 'secret/testing', secretValues: [
