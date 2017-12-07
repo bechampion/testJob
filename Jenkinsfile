@@ -1,7 +1,6 @@
 pipeline{
    agent any
    environment { 
-   configuration = wrap([$class: 'VaultConfiguration',
        vaultUrl: 'http://my-very-other-vault-url.com',
        vaultCredentialId: 'my-vault-cred-id'])
    secrets = wrap([
@@ -24,7 +23,12 @@ pipeline{
     steps {
       echo 'terraform plan'
       input 'Terraform Apply??'
-      wrap([$class: 'VaultBuildWrapper', configuration: configuration, vaultSecrets: secrets]) {
+      wrap([$class: 'VaultBuildWrapper', configuration: , [$class: 'VaultConfiguration',
+       vaultUrl: 'http://my-very-other-vault-url.com',
+       vaultCredentialId: 'my-vault-cred-id'], vaultSecrets :  [
+   [$class: 'VaultSecret', path: 'secret/testing', secretValues: [
+   [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value_one'],
+   ]]]) { 
       echo '1'
       }
     }
