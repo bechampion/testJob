@@ -1,5 +1,7 @@
 pipeline{
-   agent any
+   agent {
+    docker { image 'node:7-alpine' }
+   }
    environment { 
    terraform = "https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip?_ga=2.48146279.1348528623.1512638709-486120205.1512548428"
 }
@@ -17,12 +19,7 @@ pipeline{
     steps {
       echo 'terraform plan'
       input 'Terraform Apply??'
-      //wrap([$class: 'VaultBuildWrapper', configuration:  [$class: 'VaultConfiguration',vaultUrl: 'http://127.0.0.1:8200', vaultCredentialId:'vault-token'], vaultSecrets :  [
       wrap([$class: 'VaultBuildWrapper', configuration: vaultConfiguration(), vaultSecrets : vaultSecrets()]){
-   //[[$class: 'VaultSecret', path: 'secret/hello', secretValues: [
-   //[$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value'],
-   //]]]
-   // ]) { 
       echo "${env.testing}"
       echo "${env.PATH}"
       }
