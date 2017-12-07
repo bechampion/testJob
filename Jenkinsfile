@@ -19,7 +19,7 @@ pipeline{
       input 'Terraform Apply??'
       wrap([$class: 'VaultBuildWrapper', configuration:  [$class: 'VaultConfiguration',
        vaultUrl: 'http://my-very-other-vault-url.com',
-       vaultCredentialId: 'my-vault-cred-id'], vaultSecrets :  [
+       vaultCredentialId: '537b2794-9af6-4c64-bdfa-12955d466d72'], vaultSecrets :  [
    [$class: 'VaultSecret', path: 'secret/testing', secretValues: [
    [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value_one'],
    ]]]]) { 
