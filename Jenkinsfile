@@ -13,5 +13,11 @@ pipeline{
    sh "./terraform || true"
     }
    }
+   stage('Terraform Plan') {
+    steps {
+    echo 'terraform plan'
+    input 'Terraform Apply??'
+  }
+   }
 }
 }
