@@ -20,8 +20,8 @@ pipeline{
       wrap([$class: 'VaultBuildWrapper', configuration:  [$class: 'VaultConfiguration',
        vaultUrl: 'http://127.0.0.1:8200',
        vaultCredentialId: 'cd71e714-d5e3-761d-393a-4ae127513b7e'], vaultSecrets :  [
-   [$class: 'VaultSecret', path: 'secret/testing', secretValues: [
-   [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value_one'],
+   [$class: 'VaultSecret', path: 'secret/hello', secretValues: [
+   [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value'],
    ]]]]) { 
       echo 'export'
       }
