@@ -2,7 +2,6 @@ pipeline{
    agent any
    environment { 
    terraform = "https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip?_ga=2.48146279.1348528623.1512638709-486120205.1512548428"
-   vc = vaultConfiguration()
 }
    stages { 
    stage('Terraform Preparation') { // for display purposes
@@ -19,7 +18,7 @@ pipeline{
       echo 'terraform plan'
       input 'Terraform Apply??'
       //wrap([$class: 'VaultBuildWrapper', configuration:  [$class: 'VaultConfiguration',vaultUrl: 'http://127.0.0.1:8200', vaultCredentialId:'vault-token'], vaultSecrets :  [
-      wrap([$class: 'VaultBuildWrapper', configuration: vc, vaultSecrets :  [
+      wrap([$class: 'VaultBuildWrapper', configuration: vaultConfiguration(), vaultSecrets :  [
    [$class: 'VaultSecret', path: 'secret/hello', secretValues: [
    [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'value'],
    ]]]]) { 
