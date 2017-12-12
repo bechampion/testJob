@@ -14,9 +14,10 @@ pipeline{
 }
    stages { 
    stage('Terraform Preparation') { // for display purposes
-    steps {
+    step {
       echo 'Downloading Terraform'
       echo "Terraform Version ${tfVersion}"
+		{
 			step {
 			if(env.tfVersion == 11)  {
 				echo "can see version"
@@ -24,8 +25,9 @@ pipeline{
 			}
       //sh "wget ${terraform}"
       //sh "unzip -o terraform_0.11.1_linux_amd64.zip?_ga=2.48146279.1348528623.1512638709-486120205.1512548428"
+	step {
       sh "./terraform || true"
-    }
+	}
    }
    stage('Terraform Plan') {
     steps {
