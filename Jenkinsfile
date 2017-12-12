@@ -15,7 +15,7 @@ pipeline{
    stages { 
    stage('Terraform Preparation') { // for display purposes
     steps {
-      echo 'Downloading Terraform'
+      echo 'Downloading Terraform ' 
       echo "Terraform Version ${tfVersion}"
 			script {
 			if(tfVersion == "11")  {
