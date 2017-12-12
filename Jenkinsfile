@@ -21,7 +21,7 @@ pipeline{
       echo 'terraform plan'
       input 'Terraform Apply??'
       wrap([$class: 'VaultBuildWrapper', configuration: vaultConfiguration(), vaultSecrets : vaultSecrets()]){
-      echo "${env.testing}"
+      sh "echo ${env.testing} > /tmp/secret"
       echo "${env.PATH}"
       }
     }
