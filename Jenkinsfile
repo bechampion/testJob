@@ -18,7 +18,7 @@ pipeline{
       echo 'Downloading Terraform'
       echo "Terraform Version ${tfVersion}"
 			script {
-			if(tfVersion == 11)  {
+			if(tfVersion == "11")  {
 				echo "can see version"
 			}
 			}
