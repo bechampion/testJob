@@ -24,7 +24,7 @@ pipeline{
       wrap([$class: 'VaultBuildWrapper', configuration: vaultConfiguration(), vaultSecrets : vaultSecrets()]){
       sh "echo ${env.testing}"
 			echo "This is using curl and http api"
-			//sh "curl http://localhost:8200/v1/secret/hello?value -H 'X-Vault-Token:${vaultToken}"
+			sh "curl http://localhost:8200/v1/secret/hello?value -H 'X-Vault-Token:${vaultToken}'"
       echo "${env.PATH}"
       }
     }
