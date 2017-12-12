@@ -3,6 +3,9 @@ pipeline{
    //agent {
     //docker { image 'node:7-alpine' }
    //}
+ parameters {
+        string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
+    }
    environment { 
    terraform = "https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip?_ga=2.48146279.1348528623.1512638709-486120205.1512548428"
 }
