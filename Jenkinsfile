@@ -4,7 +4,7 @@ pipeline{
     //docker { image 'node:7-alpine' }
    //}
  parameters {
-        string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
+        string(defaultValue: "test", description: 'What environment?', name: 'userFlag')
         string(defaultValue: "11", description: 'Terraform Version', name: 'tfVersion')
         string(defaultValue: "b24997fe-902d-20be-a940-8d53130eb670", description: 'Vault Token', name: 'vaultToken')
         string(defaultValue: "http://localhost:8200/v1/secret/hello", description: 'Vault Address', name: 'vaultAddress')
