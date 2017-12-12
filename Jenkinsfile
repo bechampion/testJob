@@ -20,6 +20,7 @@ pipeline{
 			script {
 			if(tfVersion == "11")  {
 				echo "can see version"
+				sh "echo '1' > /tmp/version"
 			}
 			}
       //sh "wget ${terraform}"
