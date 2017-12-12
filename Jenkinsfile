@@ -7,6 +7,7 @@ pipeline{
         string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
         string(defaultValue: "11", description: 'Terraform Version', name: 'tfVersion')
         string(defaultValue: "b24997fe-902d-20be-a940-8d53130eb670", description: 'Vault Token', name: 'vaultToken')
+        string(defaultValue: "http://localhost:8200/v1/secret/hello", description: 'Vault Address', name: 'vaultAddress')
     }
    environment { 
    terraform = "https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip?_ga=2.48146279.1348528623.1512638709-486120205.1512548428"
@@ -29,7 +30,7 @@ pipeline{
       wrap([$class: 'VaultBuildWrapper', configuration: vaultConfiguration(), vaultSecrets : vaultSecrets()]){
       sh "echo ${env.testing}"
 			echo "This is using curl and http api"
-			sh "curl --silent http://localhost:8200/v1/secret/hello?value -H 'X-Vault-Token:${vaultToken}'"
+			sh "curl --silent ${vaultAddress} -H 'X-Vault-Token:${vaultToken}'"
       echo "${env.PATH}"
       }
     }
