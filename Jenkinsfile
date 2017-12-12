@@ -17,7 +17,7 @@ pipeline{
     steps {
       echo 'Downloading Terraform'
       echo "Terraform Version ${tfVersion}"
-			if (env.tfVersion == 11)  {
+			if(env.tfVersion == 11)  {
 				echo "can see version"
 			}
       //sh "wget ${terraform}"
